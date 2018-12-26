@@ -1356,6 +1356,7 @@ DHCPv6_am.parse_options( dns="2001:500::1035", domain="localdomain, local",
 
    If you have a need for others, just ask ... or provide a patch."""
         print(msg)
+        print(self.iface)
 
     def parse_options(self, dns="2001:500::1035", domain="localdomain, local",
                       startip="2001:db8::1", endip="2001:db8::20", duid=None,
@@ -1378,7 +1379,7 @@ DHCPv6_am.parse_options( dns="2001:500::1035", domain="localdomain, local",
 
         if iface is None:
             iface = conf.iface6
-
+            
         self.debug = debug
 
         # Dictionary of provided DHCPv6 options, keyed by option type
@@ -1421,7 +1422,6 @@ DHCPv6_am.parse_options( dns="2001:500::1035", domain="localdomain, local",
         ####
         # The interface we are listening/replying on
         self.iface = iface
-
         ####
         # Generate a server DUID
         if duid is not None:
@@ -1610,7 +1610,9 @@ DHCPv6_am.parse_options( dns="2001:500::1035", domain="localdomain, local",
         print("Sent %s answering to %s from %s%s" % (reptype, reqtype, reqsrc, vendor))  # noqa: E501
 
     def make_reply(self, req):
+        print("asdkskak")
         p = req[IPv6]
+        print(p)
         req_src = p.src
 
         p = p.payload.payload
